@@ -1,0 +1,44 @@
+<a class="pular" href="#tabela-titulo">Pular para as cotações</a>
+
+<header class="topo">
+  <div class="topo__conteudo">
+    <span class="marca">
+      <span class="marca__logo" aria-hidden="true"><app-icone nome="grafico" /></span>
+      <span class="marca__nome">Cotações ao vivo</span>
+    </span>
+    <span class="topo__descricao">WebSocket, reconexão e um desenho por quadro</span>
+    <span class="topo__espaco"></span>
+    @if (!guiaAberto()) {
+      <button type="button" class="botao botao--fantasma botao--pequeno" (click)="mostrarGuia(true)">
+        <app-icone nome="ajuda" />
+        Como testar
+      </button>
+    }
+    <a class="topo__autor" href="https://joaopaulo.omniahub.com.br" target="_blank" rel="noopener">por João Paulo</a>
+  </div>
+</header>
+
+<main class="palco">
+  @if (guiaAberto()) {
+    <app-guia-rapido (fechar)="mostrarGuia(false)" />
+  }
+
+  <div class="faixa">
+    <app-estado-conexao />
+    <app-medidores />
+  </div>
+
+  <div class="mesa">
+    <div class="mesa__principal">
+      <app-tabela-cotacoes />
+      <app-registro />
+    </div>
+    <div class="mesa__lado">
+      <app-painel-simular />
+      <app-grafico-ao-vivo />
+      <app-painel-alertas />
+    </div>
+  </div>
+</main>
+
+<app-avisos />
